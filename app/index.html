@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Code Execution Visualizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="title-block">
+        <h1>Code Execution Visualizer</h1>
+        <p>Language-agnostic, single-pass execution simulation for learning and debugging.</p>
+      </div>
+      <div class="controls">
+        <label class="control">
+          <span>Language</span>
+          <select id="languageSelect">
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="go">Go</option>
+          </select>
+        </label>
+        <label class="control speed-control">
+          <span>Run Speed</span>
+          <input id="speedRange" type="range" min="100" max="1200" step="100" value="500" />
+          <div id="speedLabel" class="speed-label">500 ms</div>
+        </label>
+        <button id="runBtn" class="primary">Run</button>
+        <button id="debugBtn">Step</button>
+        <button id="autoDebugBtn" class="toggle" aria-pressed="false">
+          <span class="toggle-label">Auto</span>
+          <span class="toggle-state">Off</span>
+        </button>
+        <button id="pauseBtn" class="ghost" disabled>Pause</button>
+        <button id="resetBtn" class="ghost">Reset</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="editor-panel">
+        <div class="panel-header">
+          <h2>Editor</h2>
+          <div class="panel-meta">Paste runnable code with a clear entry point (e.g., main).</div>
+        </div>
+        <div class="editor">
+          <textarea id="codeInput" spellcheck="false" wrap="off"></textarea>
+          <div id="lineNumbers" class="line-numbers"></div>
+        </div>
+      </section>
+
+      <section class="viz-panel">
+        <div class="panel-header">
+          <h2>Execution Visualization</h2>
+          <div id="status" class="panel-meta">Ready.</div>
+        </div>
+        <div class="stage">
+          <div class="stage-grid">
+            <div class="stage-card">
+              <div class="stage-title">Line</div>
+              <div id="stageLine" class="stage-line">-</div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-title">Variables</div>
+              <div id="stageVars" class="stage-vars"></div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-title">Call Stack</div>
+              <div id="stageStack" class="stage-stack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline">
+          <h3>Execution Steps</h3>
+          <ol id="steps" class="steps"></ol>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
