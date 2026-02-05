@@ -344,6 +344,7 @@ textarea#codeInput.scrolling::-webkit-scrollbar-thumb {
   line-height: 1.5;
   pointer-events: none;
   white-space: pre;
+  overflow: hidden;
 }
 
 
